@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import db from '../db.json';
 
-// Import components
+// Import components from folder src
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
