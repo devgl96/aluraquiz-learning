@@ -9,7 +9,11 @@ import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import QuizLogo from '../src/components/QuizLogo';
+import QuizContainer from '../src/components/QuizContainer';
 import QuizBackground from '../src/components/QuizBackground';
+
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -17,47 +21,6 @@ import QuizBackground from '../src/components/QuizBackground';
 //   background-size: cover;
 //   background-position: center;
 // `;
-
-export const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
-`;
-
-export const Input = styled.input`
-  width: 100%;
-
-  background: none;
-  font-size: 0.7rem;
-  border: 2px solid ${({theme}) => theme.colors.primary};
-  border-radius: 3px;
-  margin: 1.5em 0;
-  padding: 0.75em;
-  color: #FFF;
-`;
-
-export const Button = styled.button`
-  width: 100%;
-  background: ${({theme}) => theme.colors.secondary};
-  color: ${({theme}) => theme.colors.primary};
-
-  font-size: 1em;
-  margin: 1em 0 0;
-  padding: 0.50em 1em;
-  border: 2px solid ${({theme}) => theme.colors.primary};
-  border-radius: 3px;
-
-  &:disabled {
-    background: #333;
-    color: #DDD;
-    border: 2px solid #DDD;
-  }
-`;
 
 export default function Home() {
   const router = useRouter();
@@ -91,13 +54,14 @@ export default function Home() {
                 }}
                 placeholder="Diz ai seu nome"/> */}
               <Input 
-                onChange={(infosDoEvent) => {
-                  setName(infosDoEvent.target.value);
-                }}
-                placeholder="Diz ai seu nome"/>
+                name="nomeDoUsuario"
+                onChange={(infosDoEvent) => setName(infosDoEvent.target.value)}
+                placeholder="Diz ai seu nome"
+                value={name}
+              />
               
               <Button type="submit" disabled={name.length === 0}>
-                JOGAR
+                {`Jogar ${name}`}
               </Button>
             </form>
           </Widget.Content>
