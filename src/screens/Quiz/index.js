@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 
-import db from '../db.json';
+// import db from '../../../db.json';
 
-import Widget from '../src/components/Widget';
-import QuestionWidget from '../src/components/QuestionWidget';
+import Widget from '../../components/Widget';
+import QuestionWidget from '../../components/QuestionWidget';
 
-import QuizLogo from '../src/components/QuizLogo';
-import QuizContainer from '../src/components/QuizContainer';
-import QuizBackground from '../src/components/QuizBackground';
+import QuizLogo from '../../components/QuizLogo';
+import QuizContainer from '../../components/QuizContainer';
+import QuizBackground from '../../components/QuizBackground';
 
 // import Input from '../src/components/Input';
 // import Button from '../src/components/Button';
@@ -69,13 +69,14 @@ const screenStates = {
     RESULT: 'RESULT',
 };
 
-export default function QuizPage() {
+export default function QuizPage({externalQuestions, externalBg}) {
     const [screenState, setScreenState] = useState(screenStates.LOADING);
     const [results, setResults] = useState([]);
-    const totalQuestions = db.questions.length;
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const questionIndex = currentQuestion;
-    const question = db.questions[questionIndex];
+    const question = externalQuestions[questionIndex];
+    const totalQuestions = externalQuestions.length;
+    const bg = externalBg;
 
     function addResult(result) {
         setResults([
@@ -106,7 +107,7 @@ export default function QuizPage() {
     }
 
     return (
-        <QuizBackground backgroundImage={db.bg}>
+        <QuizBackground backgroundImage={bg}>
             <Head>
                 <title>AluraQuiz - CSS Quiz</title>
             </Head>
@@ -122,7 +123,9 @@ export default function QuizPage() {
                         addResult={addResult}
                     />)
                 }
+
                 {screenState === screenStates.LOADING && <LoadingWidget />}
+
                 {screenState === screenStates.RESULT && <ResultWidget results={results} />}
             </QuizContainer>
         </QuizBackground>
