@@ -1,5 +1,5 @@
 # Alura-Quiz - Imersão React
-![Image from project](./AluraQuizLearning.png)
+![Alura Quiz Image from project](./aluraquiz-learning.png)
 ## Dependencies
 * Next.js
 https://nextjs.org/
